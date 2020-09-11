@@ -100,7 +100,7 @@ export default {
         email: this.email,
         password: this.password
       }
-      this.registerSeller(data)
+      this.registerCustomer(data)
         .then((res) => {
           this.$router.push('/')
         })
