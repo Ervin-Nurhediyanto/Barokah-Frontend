@@ -20,12 +20,13 @@ export default new Vuex.Store({
       return new Promise((resolve, reject) => {
         axios.post('http://localhost:4000/api/v1/users/login/seller', payload)
           .then((res) => {
+            console.log(res.data.result.message)
             setex.commit('setUser', res.data.result)
             localStorage.setItem('token', this.state.token)
             resolve(res.data.result[0])
           })
           .catch((err) => {
-            alert('Login Error')
+            alert(err.response.data.result)
             reject(err)
           })
       })
@@ -39,7 +40,7 @@ export default new Vuex.Store({
             resolve(res.data.result[0])
           })
           .catch((err) => {
-            alert('Login Error')
+            alert(err.response.data.result)
             reject(err)
           })
       })
@@ -51,7 +52,7 @@ export default new Vuex.Store({
             resolve(res.data.result[0])
           })
           .catch((err) => {
-            alert('Register Error')
+            alert(err.response.data.result)
             reject(err)
           })
       })
@@ -63,7 +64,7 @@ export default new Vuex.Store({
             resolve(res.data.result[0])
           })
           .catch((err) => {
-            alert('Register Error')
+            alert(err.response.data.result)
             reject(err)
           })
       })
