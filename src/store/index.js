@@ -25,6 +25,7 @@ export default new Vuex.Store({
             resolve(res.data.result[0])
           })
           .catch((err) => {
+            alert('Login Error')
             reject(err)
           })
       })
@@ -38,6 +39,7 @@ export default new Vuex.Store({
             resolve(res.data.result[0])
           })
           .catch((err) => {
+            alert('Login Error')
             reject(err)
           })
       })
@@ -49,6 +51,7 @@ export default new Vuex.Store({
             resolve(res.data.result[0])
           })
           .catch((err) => {
+            alert('Register Error')
             reject(err)
           })
       })
@@ -60,6 +63,7 @@ export default new Vuex.Store({
             resolve(res.data.result[0])
           })
           .catch((err) => {
+            alert('Register Error')
             reject(err)
           })
       })
