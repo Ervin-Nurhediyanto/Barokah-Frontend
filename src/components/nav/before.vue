@@ -1,6 +1,6 @@
 <template>
     <div>
-    <nav class="bg-light p-0 shadow">
+ <nav class="bg-light p-0 shadow">
         <nav class="navbar container navbar-expand-lg navbar-light bg-light p-0">
             <div class="row mx-auto my-2">
                 <img src="./Vector.png">
@@ -16,23 +16,12 @@
                         <img src="./nav/Search.png" class="my-2 col-auto">
                     </a>
                 </form>
-                <div class="dropdown dropleft ml-4 my-auto">
-                    <button role="button" class="btn border border-secondary" id="btndrop" data-toggle="dropdown">
-                        <img src="./nav/filter.png" class="my-auto">
-                    </button>
-                    <div class="dropdown-menu">
-                        <button class="dropdown-item" type="button">Action</button>
-                        <button class="dropdown-item" type="button">Another action</button>
-                        <button class="dropdown-item" type="button">Something else here</button>
-                    </div>
-                </div>
             </div>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
                     <a class="nav-link mr-3" href="#"><img src="./nav/shopping-cart.png"></a>
-                    <a class="nav-link mr-3" href="#"><img src="./nav/bell.png"></a>
-                    <a class="nav-link mr-3" href="#"><img src="./nav/mail.png"></a>
-                    <a class="nav-link mr-5" href="#"><img src="./nav/christian-buehner-DItYlc26zVI-unsplash 1.png" class="rounded-circle"></a>
+                    <button type="button" class="btn btn-danger mr-3 rounded-pill px-3">Login</button>
+                    <button type="button" class="btn btn-outline-secondary mr-5 rounded-pill">Signup</button>
                 </div>
             </div>
         </nav>
@@ -42,7 +31,7 @@
 
 <script>
 export default {
-
+  name: 'before'
 }
 </script>
 
@@ -62,29 +51,5 @@ textarea:hover,
             outline: 0px !important;
             -webkit-appearance: none;
             box-shadow: none !important;
-        }
-
-        nav .form-inline {
-            border: 1px solid #bdb7b7 !important;
-            overflow: hidden;
-            padding: 0;
-            height: 35px;
-            width: 400px;
-        }
-
-        #brand {
-            font-size: 32px;
-            color: #d31d0d;
-            margin-left: 5px;
-        }
-
-        nav .form-inline input {
-            border: none;
-            height: 35px;
-        }
-
-        #btndrop {
-            border: 2px solid #bdb7b7 !important;
-            border-radius: 12px;
         }
 </style>

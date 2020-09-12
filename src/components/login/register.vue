@@ -18,9 +18,11 @@
                     <h4><strong>Please Sign Up with your account</strong></h4>
                     <form role="form" id="login-form">
                         <div class="row">
-                            <div class="btn-group m-4 mx-auto" role="group">
-                                <button type="button" class="btn btn-white border border-secondary text-secondary px-4 py-2">Customer</button>
-                                <button type="button" class="btn btn-danger text-white px-5 py-2">Seller</button>
+                            <div class="radio-group shadow my-5 mx-auto">
+                            <input type="radio" id="costumer" name="selector" value="customer" @change="roleCustomer">
+                            <label for="costumer">Costumer</label>
+                            <input type="radio" id="seller" name="selector" value="seller" @change="roleSeller">
+                            <label for="seller">Seller</label>
                             </div>
                         </div>
                         <div class="form-group">
@@ -29,16 +31,17 @@
                         <div class="form-group">
                             <input type="email" v-model="email" class="form-control-lg w-100 border-0" placeholder="Email">
                         </div>
-                        <div class="form-group">
-                            <input type="number" v-model="phone" class="form-control-lg w-100 border-0" placeholder="Phone Number">
+                        <div class="form-group" v-show="userRole == 1">
+                            <input type="number" v-model="phoneNumber" class="form-control-lg w-100 border-0" placeholder="Phone Number">
                         </div>
-                        <div class="form-group">
-                            <input type="text" v-model="store" class="form-control-lg w-100 border-0" placeholder="Store Name">
+                        <div class="form-group" v-show="userRole == 1">
+                            <input type="text" v-model="storeName" class="form-control-lg w-100 border-0" placeholder="Store Name">
                         </div>
                         <div class="form-group">
                             <input type="password" v-model="password" class="form-control-lg w-100 " placeholder="Password">
                         </div>
-                        <button type="submit" id="btn" class="btn text-white" :disabled="!input">Register</button>
+                        <button v-show="userRole == 1" type="submit" id="btn" class="btn text-white" :disabled="!inputSeller" @click="handleRegisterSeller">Register</button>
+                        <button v-show="userRole == 2" type="submit" id="btn" class="btn text-white" :disabled="!inputCustomer" @click="handleRegisterCustomer">Register</button>
                         <p class="mt-3 text-center">Already have a Blanja Barokah account? <a href="#" id=forgot @click="$emit('login-event')">Login</a></p>
                     </form>
                 </div>
@@ -49,20 +52,61 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'register',
   data () {
     return {
       name: '',
       email: '',
-      phone: '',
-      store: '',
-      password: ''
+      phoneNumber: '',
+      storeName: '',
+      password: '',
+      userRole: 1
     }
   },
   computed: {
-    input: function () {
-      return this.name && this.email && this.phone && this.store && this.password
+    inputSeller: function () {
+      return this.name && this.email && this.phoneNumber && this.storeName && this.password
+    },
+    inputCustomer: function () {
+      return this.name && this.email && this.password
+    }
+  },
+  methods: {
+    ...mapActions(['registerSeller']),
+    ...mapActions(['registerCustomer']),
+    handleRegisterSeller (e) {
+      e.preventDefault()
+      const data = {
+        name: this.name,
+        email: this.email,
+        phoneNumber: this.phoneNumber,
+        storeName: this.storeName,
+        password: this.password
+      }
+      this.registerSeller(data)
+        .then((res) => {
+          this.$router.push('/')
+        })
+    },
+    handleRegisterCustomer (e) {
+      e.preventDefault()
+      const data = {
+        name: this.name,
+        email: this.email,
+        password: this.password
+      }
+      this.registerCustomer(data)
+        .then((res) => {
+          this.$router.push('/')
+        })
+    },
+    roleCustomer () {
+      this.userRole = 2
+    },
+    roleSeller () {
+      this.userRole = 1
     }
   }
 }
