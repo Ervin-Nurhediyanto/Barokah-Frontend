@@ -25,7 +25,8 @@
                             <input type="password" v-model="confirmPassword" class="form-control-lg w-100" name="confirm_password" placeholder="Confirm Password">
                         </div>
                         <p class="text-right"><a href="#" id="forgot">Forgot Password?</a></p>
-                        <button type="submit" id="btn" class="btn text-white" :disabled="!input"  @click="$emit('login-event')">Reset Password</button>
+                        <!-- <button type="submit" id="btn" class="btn text-white" :disabled="!input"  @click="$emit('login-event')">Reset Password</button> -->
+                        <button type="submit" id="btn" class="btn text-white" :disabled="!input"  @click="handleResetPass">Reset Password</button>
                     </form>
                 </div>
             </div>
@@ -35,6 +36,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'confirm',
   data () {
@@ -46,6 +49,19 @@ export default {
   computed: {
     input: function () {
       return this.password && this.confirmPassword
+    }
+  },
+  methods: {
+    ...mapActions(['resetPassword']),
+    handleResetPass (e) {
+      e.preventDefault()
+      const data = {
+        password: this.password
+      }
+      this.resetPassword(data)
+        .then((res) => {
+          this.$router.push('/login')
+        })
     }
   }
 }

@@ -56,7 +56,7 @@
         </div>
                     <!-- ... -->
                 </div>
-                 <button type="submit" id="btn" class="btn text-white w-50 mb-4 mx-auto">Change Password</button>
+                 <button type="submit" id="btn" class="btn text-white w-50 mb-4 mx-auto" @click="handleForgotPass">Change Password</button>
             </div>
         </div>
     </div>
@@ -65,6 +65,8 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
   name: 'reset',
   data () {
@@ -73,6 +75,21 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      resetId: 'resetId'
+    })
+  },
+  methods: {
+    ...mapActions(['forgotPassword']),
+    handleForgotPass (e) {
+      e.preventDefault()
+      const data = {
+        email: this.email
+      }
+      this.forgotPassword(data)
+        .then((res) => {
+        })
+    }
   }
 }
 </script>

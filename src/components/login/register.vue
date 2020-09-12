@@ -87,7 +87,7 @@ export default {
       }
       this.registerSeller(data)
         .then((res) => {
-          this.$router.push('/')
+          this.$router.go(0)
         })
     },
     handleRegisterCustomer (e) {
@@ -99,7 +99,7 @@ export default {
       }
       this.registerCustomer(data)
         .then((res) => {
-          this.$router.push('/')
+          this.$router.go(0)
         })
     },
     roleCustomer () {

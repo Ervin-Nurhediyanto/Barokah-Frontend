@@ -7,18 +7,22 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: {},
-    token: localStorage.getItem('token') || null
+    token: localStorage.getItem('token') || null,
+    resetId: localStorage.getItem('resetId') || null
   },
   mutations: {
     setUser (state, payload) {
       state.user = payload
       state.token = payload.token
+    },
+    setSesetId (state, id) {
+      state.resetId = id
     }
   },
   actions: {
     loginSeller (setex, payload) {
       return new Promise((resolve, reject) => {
-        axios.post('http://localhost:4000/api/v1/users/login/seller', payload)
+        axios.post(process.env.VUE_APP_BASE_URL + '/users/login/seller', payload)
           .then((res) => {
             console.log(res.data.result.message)
             setex.commit('setUser', res.data.result)
@@ -33,7 +37,7 @@ export default new Vuex.Store({
     },
     loginCustomer (setex, payload) {
       return new Promise((resolve, reject) => {
-        axios.post('http://localhost:4000/api/v1/users/login/custommer/', payload)
+        axios.post(process.env.VUE_APP_BASE_URL + '/users/login/custommer/', payload)
           .then((res) => {
             setex.commit('setUser', res.data.result)
             localStorage.setItem('token', this.state.token)
@@ -47,7 +51,7 @@ export default new Vuex.Store({
     },
     registerSeller (setex, payload) {
       return new Promise((resolve, reject) => {
-        axios.post('http://localhost:4000/api/v1/users/register/seller/', payload)
+        axios.post(process.env.VUE_APP_BASE_URL + '/users/register/seller/', payload)
           .then((res) => {
             resolve(res.data.result[0])
           })
@@ -59,7 +63,7 @@ export default new Vuex.Store({
     },
     registerCustomer (setex, payload) {
       return new Promise((resolve, reject) => {
-        axios.post('http://localhost:4000/api/v1/users/register/custommer/', payload)
+        axios.post(process.env.VUE_APP_BASE_URL + '/users/register/custommer/', payload)
           .then((res) => {
             resolve(res.data.result[0])
           })
@@ -68,6 +72,39 @@ export default new Vuex.Store({
             reject(err)
           })
       })
+    },
+    forgotPassword (setex, payload) {
+      console.log(payload)
+      return new Promise((resolve, reject) => {
+        axios.post(process.env.VUE_APP_BASE_URL + '/users/forgotpassword/', payload)
+          .then((res) => {
+            setex.commit('setSesetId', res.data.result)
+            localStorage.setItem('resetId', this.state.resetId)
+            console.log(res.data.message)
+            resolve(res)
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
+    },
+    resetPassword (setex, payload) {
+      console.log(payload)
+      return new Promise((resolve, reject) => {
+        axios.patch(process.env.VUE_APP_BASE_URL + `/users/resetpassword/${this.state.resetId}`, payload)
+          .then((res) => {
+            console.log(res.data.message)
+            resolve(res)
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
+    }
+  },
+  getters: {
+    resetId (state) {
+      return state.resetId
     }
   },
   modules: {
