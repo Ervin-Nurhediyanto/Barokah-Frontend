@@ -53,7 +53,10 @@
 
 <script>
 import { mapActions } from 'vuex'
+<<<<<<< HEAD
 
+=======
+>>>>>>> staging
 export default {
   name: 'register',
   data () {
@@ -77,7 +80,10 @@ export default {
   methods: {
     ...mapActions(['registerSeller']),
     ...mapActions(['registerCustomer']),
+<<<<<<< HEAD
 
+=======
+>>>>>>> staging
     handleRegisterSeller (e) {
       e.preventDefault()
       const data = {
@@ -89,10 +95,16 @@ export default {
       }
       this.registerSeller(data)
         .then((res) => {
+<<<<<<< HEAD
           this.$router.push('/')
         })
     },
 
+=======
+          this.$router.go(0)
+        })
+    },
+>>>>>>> staging
     handleRegisterCustomer (e) {
       e.preventDefault()
       const data = {
@@ -100,12 +112,20 @@ export default {
         email: this.email,
         password: this.password
       }
+<<<<<<< HEAD
       this.registerSeller(data)
         .then((res) => {
           this.$router.push('/')
         })
     },
 
+=======
+      this.registerCustomer(data)
+        .then((res) => {
+          this.$router.go(0)
+        })
+    },
+>>>>>>> staging
     roleCustomer () {
       this.userRole = 2
     },

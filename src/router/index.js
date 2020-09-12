@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
+import Reset from '../views/reset.vue'
 
 Vue.use(VueRouter)
 
@@ -14,9 +15,12 @@ const routes = [{
   path: '/login',
   name: 'Login',
   component: Login
-
-}
-]
+},
+{
+  path: '/reset',
+  name: 'Reset',
+  component: Reset
+}]
 
 const router = new VueRouter({
   mode: 'history',

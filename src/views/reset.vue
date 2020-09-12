@@ -3,7 +3,8 @@
     <component v-bind:is="component"
     @register-event="component='register'"
     @login-event="component='signin'"
-    @forgot-password="component='reset'"></component>
+    @forgot-password="component='reset'"
+    @confirm-event="component='confirm'"></component>
   </div>
 </template>
 <script>
@@ -13,7 +14,7 @@ import reset from '../components/login/reset'
 import confirm from '../components/login/confirm'
 
 export default {
-  name: 'Login',
+  name: 'Reset',
   components: {
     signin,
     register,
@@ -22,7 +23,7 @@ export default {
   },
   data () {
     return {
-      component: signin
+      component: confirm
     }
   }
 }
