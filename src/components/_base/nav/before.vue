@@ -3,7 +3,7 @@
         <nav class="bg-light p-0 shadow">
             <nav class="navbar container navbar-expand-lg navbar-light bg-light p-0">
                 <div class="row mx-auto my-2">
-                    <img src="./Vector.png">
+                    <img src="../../../assets/Vector.png">
                     <strong id="brand" class="my-auto mr-5">Barokah</strong>
                 </div>
                 <button class="navbar-toggler mr-5" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,14 +13,14 @@
                     <form class="form-inline rounded-pill bg-white row mt-1 ml-5 mb-2">
                         <input class="form-control mr-3 rounded-pill w-100 col" type="search" placeholder="Search" aria-label="Search">
                         <a href="#" type="submit">
-                            <img src="./nav/Search.png" class="my-2 col-auto">
+                            <img src="../../../assets/nav/Search.png" class="my-2 col-auto">
                         </a>
                     </form>
                 </div>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav ml-auto">
-                        <a class="nav-link mr-3" href="#"><img src="./nav/shopping-cart.png"></a>
-                        <button type="button" class="btn btn-danger mr-3 rounded-pill px-3">Login</button>
+                        <a class="nav-link mr-3" href="#"><img src="../../../assets/nav/shopping-cart.png"></a>
+                        <button type="button" class="btn btn-danger mr-3 rounded-pill px-3" @click="login">Login</button>
                         <button type="button" class="btn btn-outline-secondary mr-5 rounded-pill">Signup</button>
                     </div>
                 </div>
@@ -31,7 +31,12 @@
 
 <script>
 export default {
-  name: 'before'
+  name: 'before',
+  methods: {
+    login () {
+      this.$router.push('/login')
+    }
+  }
 }
 </script>
 

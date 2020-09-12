@@ -24,7 +24,7 @@
                     <div class="navbar-nav ml-auto">
                         <a class="nav-link mr-3" href="#"><img src="../../../assets/nav/shopping-cart.png"></a>
                         <a class="nav-link mr-3" href="#"><img src="../../../assets/nav/bell.png"></a>
-                        <a class="nav-link mr-3" href="#"><img src="../../../assets/nav/mail.png"></a>
+                        <a class="nav-link mr-3" href="#"><img src="../../../assets/nav/mail.png" @click="chat"></a>
                         <a class="nav-link mr-5" href="#"><img src="../../../assets/nav/christian-buehner-DItYlc26zVI-unsplash 1.png" class="rounded-circle"></a>
                     </div>
                 </div>
@@ -122,7 +122,12 @@
 
 <script>
 export default {
-  name: 'after'
+  name: 'after',
+  methods: {
+    chat () {
+      this.$router.push('/chat')
+    }
+  }
 }
 </script>
 
